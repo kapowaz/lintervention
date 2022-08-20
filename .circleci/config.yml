@@ -1,0 +1,55 @@
+defaults: &defaults
+  docker:
+    - image: rhinogram/node-awscli
+
+version: 2.1
+
+orbs:
+  node: circleci/node@4.7.0
+
+jobs:
+  test:
+    <<: *defaults
+    steps:
+      - node/install:
+          node-version: v14.18.1
+          install-npm: false
+          install-yarn: false
+      - checkout
+      - run: yarn
+      - run: yarn -s lint
+      - run: yarn test
+      - run: yarn typecheck
+      - run: yarn danger ci
+
+  publish:
+    <<: *defaults
+    steps:
+      - node/install:
+          node-version: v14.18.1
+          install-npm: false
+          install-yarn: false
+      - checkout
+      - add_ssh_keys:
+          fingerprints:
+            - '86:3f:dd:d5:e0:f2:2a:a9:cd:46:67:2f:6c:68:27:68'
+      - run: yarn
+      - run:
+          name: Build dist files
+          command: yarn build
+      - run:
+          name: Publish to NPM
+          command: sh ./bin/publish.sh
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - test
+      - publish:
+          requires:
+            - test
+          filters:
+            branches:
+              only:
+                - master
