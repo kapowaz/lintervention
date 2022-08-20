@@ -26,13 +26,13 @@ export const reportDisabled = async ({
 }): Promise<IOverruleReport[]> => {
   const findCommand = gitFilesCommand({ scope });
   const { stdout } = await findDisabled({ platform, findCommand });
+  const trimmed = stdout.trim();
 
-  return stdout
-    .trim()
-    .split('\n')
-    .map((line) => {
-      const [count, rule] = line.trim().split(' ');
+  if (trimmed === '') return [];
 
-      return { count, rule };
-    });
+  return trimmed.split('\n').map((line) => {
+    const [count, rule] = line.trim().split(' ');
+
+    return { count, rule };
+  });
 };

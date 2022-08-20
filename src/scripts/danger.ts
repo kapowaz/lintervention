@@ -17,8 +17,16 @@ ${rows.map((row) => `|${row.join('|')}|`).join('\n')}
 
 export const dangerReport = async () => {
   const directives = await reportDisabled({});
+  const heading = 'Lintervention Report';
   const headings = ['Count', 'Rule'];
+
+  if (directives.length === 0) {
+    return `#### ${heading}
+
+✨ No ESLint rules ignored!`;
+  }
+
   const rows = directives.map(({ count, rule }) => [count, rule]);
 
-  return table({ heading: 'Lintervention Report', headings, rows });
+  return table({ heading, headings, rows });
 };
