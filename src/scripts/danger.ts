@@ -1,5 +1,3 @@
-import { markdown } from 'danger';
-
 import { reportDisabled } from '../reportDisabled';
 
 const table = ({
@@ -10,13 +8,12 @@ const table = ({
   heading: string;
   headings: string[];
   rows: string[][];
-}) =>
-  markdown(`#### ${heading}
+}) => `#### ${heading}
 
 |${headings.join('|')}|
 |${headings.map(() => '---').join('|')}|
 ${rows.map((row) => `|${row.join('|')}|`).join('\n')}
-`);
+`;
 
 export const dangerReport = async () => {
   const directives = await reportDisabled({});
