@@ -1,0 +1,2 @@
+# this file is deliberately empty to ensure that TypeScript definitions are
+# gitignored, but not ignored when publishing.

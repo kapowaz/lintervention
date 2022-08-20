@@ -1,0 +1,57 @@
+{
+  "name": "@kapowaz/lintervention",
+  "version": "0.1.0",
+  "license": "MIT",
+  "description": "A tool for identifying ESLint rules you routinely ignore",
+  "repository": "github:kapowaz/lintervention",
+  "engines": {
+    "node": "14.18.*",
+    "npm": "please-use-yarn",
+    "yarn": ">= 1.22.0"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "NODE_ENV=test jest",
+    "test:watch": "NODE_ENV=test jest --watch",
+    "lint": "eslint --ext .js,.ts src/",
+    "lintervention": "node dist/scripts/lintervention.js",
+    "lintervention:staged": "node dist/scripts/lintervention.js --scope staged",
+    "lintervention:branch": "node dist/scripts/lintervention.js --scope branch",
+    "typecheck": "tsc --emitDeclarationOnly false --noEmit",
+    "build": "sh ./bin/build-dist.sh",
+    "build:tsc": "tsc",
+    "build:js": "BABEL_ENV='dist-js-build' babel src --extensions '.ts,.js' --out-dir dist --ignore src/index.js,src/**/*.test.js,src/**/*.test.ts,src/test/** --quiet",
+    "ci:publish": "sh ./bin/publish.sh"
+  },
+  "dependencies": {
+    "danger": "^11.1.1",
+    "minimist": "^1.2.6"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.15.7",
+    "@babel/core": "^7.15.8",
+    "@babel/plugin-proposal-class-properties": "^7.14.5",
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+    "@babel/preset-env": "^7.15.8",
+    "@babel/preset-typescript": "^7.15.0",
+    "@types/minimist": "^1.2.2",
+    "@typescript-eslint/eslint-plugin": "^4.19.0",
+    "@typescript-eslint/parser": "^4.19.0",
+    "babel-jest": "^25.3.0",
+    "babel-plugin-add-react-displayname": "0.0.5",
+    "babel-plugin-css-modules-transform": "^1.6.2",
+    "eslint": "^7.22.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-jest": "^23.8.2",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-simple-import-sort": "^5.0.3",
+    "eslint-plugin-sort-exports": "^0.7.0",
+    "jest": "27",
+    "jest-canvas-mock": "^2.1.2",
+    "jest-cli": "27",
+    "prettier": "2.2.1",
+    "typescript": "^4.3.2"
+  }
+}

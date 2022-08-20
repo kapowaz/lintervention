@@ -1,0 +1,66 @@
+{
+  "extends": [
+    "plugin:@typescript-eslint/recommended",
+    "plugin:import/recommended",
+    "plugin:jest/recommended",
+    "plugin:prettier/recommended",
+    "prettier",
+    "prettier/@typescript-eslint"
+  ],
+  "plugins": [
+    "import",
+    "prettier",
+    "jest",
+    "simple-import-sort",
+    "sort-exports"
+  ],
+  "rules": {
+    "@typescript-eslint/ban-types": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "import/first": "error",
+    "import/newline-after-import": "error",
+    "import/no-duplicates": "error",
+    "import/no-extraneous-dependencies": [
+      "error",
+      { "devDependencies": false }
+    ],
+    "import/order": "off",
+    "simple-import-sort/sort": [
+      "error",
+      {
+        "groups": [
+          ["^\\u0000"],
+          ["^@?\\w"],
+          ["^\\.\\.(?!/?$)", "^\\.\\./?$"],
+          ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"]
+        ]
+      }
+    ],
+    "sort-exports/sort-exports": ["error", { "sortDir": "asc" }],
+    "sort-imports": "off"
+  },
+  "overrides": [
+    {
+      "files": ["**/*.stories.*", "**/*.test.*"],
+      "rules": {
+        "import/no-extraneous-dependencies": [
+          "error",
+          { "devDependencies": true }
+        ]
+      }
+    },
+    {
+      "files": ["**/__fixtures__/**", "**/__mocks__/**", "**/*.mock.*"],
+      "rules": {
+        "import/no-extraneous-dependencies": [
+          "error",
+          { "devDependencies": true }
+        ]
+      }
+    }
+  ],
+  "settings": {
+    "import/resolver": { "node": { "extensions": [".js", ".ts"] } }
+  }
+}

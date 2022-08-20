@@ -1,0 +1,76 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "useBuiltIns": "usage",
+        "corejs": {
+          "version": 3
+        }
+      }
+    ],
+    [
+      "@babel/preset-typescript",
+      {
+        "allowNamespaces": true,
+        "allowDeclareFields": true
+      }
+    ]
+  ],
+  "env": {
+    "cjs": {
+      "presets": [
+        [
+          "@babel/preset-env",
+          {
+            "modules": "cjs"
+          }
+        ]
+      ]
+    },
+    "esm": {
+      "presets": [
+        [
+          "@babel/preset-env",
+          {
+            "modules": false
+          }
+        ]
+      ]
+    },
+
+    /**
+     * This config is used when Babelifying for production
+     */
+    "dist-js-build": {
+      "presets": [
+        [
+          "@babel/preset-typescript",
+          { "allowNamespaces": true, "allowDeclareFields": true }
+        ],
+        ["@babel/preset-env"]
+      ],
+      "plugins": ["@babel/plugin-proposal-class-properties"]
+    },
+
+    /**
+     * Babel config for tests, use both locally and in CI when running test.
+     */
+    "test": {
+      "presets": [
+        [
+          "@babel/preset-typescript",
+          { "allowNamespaces": true, "allowDeclareFields": true }
+        ],
+        [
+          "@babel/preset-env",
+          {
+            "targets": {
+              "node": "current"
+            }
+          }
+        ]
+      ]
+    }
+  }
+}
