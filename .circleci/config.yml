@@ -20,7 +20,6 @@ jobs:
       - run: yarn -s lint
       - run: yarn test
       - run: yarn typecheck
-      - run: yarn danger ci
 
   publish:
     <<: *defaults
