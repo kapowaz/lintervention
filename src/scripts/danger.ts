@@ -20,5 +20,5 @@ export const dangerReport = async () => {
   const headings = ['Count', 'Rule'];
   const rows = directives.map(({ count, rule }) => [count, rule]);
 
-  table({ heading: 'Lintervention Report', headings, rows });
+  return table({ heading: 'Lintervention Report', headings, rows });
 };

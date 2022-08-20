@@ -1,4 +1,4 @@
-# lintervention
+# Lintervention
 
 A tool for identifying ESLint rules you routinely ignore. Lintervention
 generates a report identifying which rules you are ignoring — either across a
@@ -39,5 +39,49 @@ workflow:
 * A function which generates a report (formatted as a Markdown table) which is
   then supplied to Danger.js; you can then directly import this into your own
   Dangerfile.
+
+## Installation
+
+There are two (supported) ways to generate reports with Lintervention:
+
+* Locally with yarn or npm scripts
+* With Danger.js, as part of CI
+
+### yarn or npm script
+
+To use with a yarn or npm script, create a JavaScript file with the following
+contents, called e.g. `lintervention.js`:
+
+```js
+const { report } = require('@kapowaz/lintervention');
+
+report();
+```
+
+Then add these scripts to your `package.json`:
+
+```json
+"scripts": {
+  "lintervention": "node path/to/lintervention.js",
+  "lintervention:staged": "node path/to/lintervention.js --scope staged",
+  "lintervention:branch": "node path/to/lintervention.js --scope branch"
+}
+```
+
+### Danger.js
+
+Add the following to your `dangerfile.js`:
+
+```js
+import { markdown } from 'danger';
+import { dangerReport } from '@kapowaz/lintervention';
+
+async function lintervention() {
+  const report = await dangerReport();
+  markdown(report);
+}
+
+lintervention();
+```
 
 [1]: https://github.com/okonet/lint-staged
