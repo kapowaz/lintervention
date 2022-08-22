@@ -1,6 +1,6 @@
 {
   "name": "lintervention",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "license": "MIT",
   "description": "A tool for identifying ESLint rules you routinely ignore",
   "repository": "github:kapowaz/lintervention",
@@ -15,15 +15,16 @@
     "test": "NODE_ENV=test jest",
     "test:watch": "NODE_ENV=test jest --watch",
     "lint": "eslint --ext .js,.ts src/",
-    "lintervention": "node dist/scripts/example.js",
-    "lintervention:staged": "node dist/scripts/example.js --scope staged",
-    "lintervention:branch": "node dist/scripts/example.js --scope branch",
+    "lintervention": "node dist/bin/lintervention",
+    "lintervention:staged": "yarn lintervention --scope staged",
+    "lintervention:branch": "yarn lintervention --scope branch",
     "typecheck": "tsc --emitDeclarationOnly false --noEmit",
     "build": "sh ./bin/build-dist.sh",
     "build:tsc": "tsc",
     "build:js": "BABEL_ENV='dist-js-build' babel src --extensions '.ts,.js' --out-dir dist --ignore src/index.js,src/**/*.test.js,src/**/*.test.ts,src/test/** --quiet",
     "ci:publish": "sh ./bin/publish.sh"
   },
+  "bin": "./bin/lintervention",
   "dependencies": {
     "minimist": "^1.2.6"
   },

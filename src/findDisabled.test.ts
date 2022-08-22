@@ -29,7 +29,7 @@ const platform: GrepPlatform =
   (process.env.GREP_PLATFORM as GrepPlatform) || GrepPlatform.BSD;
 
 // This is kind of ridiculous
-const indent = platform === GrepPlatform.BSD ? '    ' : '      ';
+const indent = platform === GrepPlatform.BSD ? '   ' : '      ';
 
 describe('findDisabled', () => {
   it('should correctly identify all eslint disable directives in the repo', async () => {

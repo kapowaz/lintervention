@@ -49,22 +49,14 @@ There are two (supported) ways to generate reports with Lintervention:
 
 ### yarn or npm script
 
-To use with a yarn or npm script, create a JavaScript file with the following
-contents, called e.g. `lintervention.js`:
-
-```js
-const { report } = require('lintervention');
-
-report();
-```
-
-Then add these scripts to your `package.json`:
+The package installs an `lintervention` tool which you can run with `yarn
+lintervention` or `npx lintervention`. You can optionally also add these scripts
+to your `package.json`:
 
 ```json
 "scripts": {
-  "lintervention": "node path/to/lintervention.js",
-  "lintervention:staged": "node path/to/lintervention.js --scope staged",
-  "lintervention:branch": "node path/to/lintervention.js --scope branch"
+  "lintervention:staged": "lintervention --scope staged",
+  "lintervention:branch": "lintervention --scope branch"
 }
 ```
 
@@ -77,7 +69,8 @@ import { markdown } from 'danger';
 import { dangerReport } from 'lintervention';
 
 async function lintervention() {
-  const report = await dangerReport();
+  // the default main branch is 'main'; you can override this here.
+  const report = await dangerReport({ baseBranch: 'master' });
   markdown(report);
 }
 
