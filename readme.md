@@ -77,7 +77,8 @@ import { markdown } from 'danger';
 import { dangerReport } from 'lintervention';
 
 async function lintervention() {
-  const report = await dangerReport();
+  // the default main branch is 'main'; you can override this here.
+  const report = await dangerReport({ baseBranch: 'master' });
   markdown(report);
 }
 
