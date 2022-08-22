@@ -5,11 +5,10 @@ set -e
 echo "Starting NPM publish"
 echo "- Setting up auth token for npm"
 echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN_CI" >> .npmrc
-echo "scope=@kapowaz" >> .npmrc
 
 echo "- Comparing local package.json version with version in registry"
 DIST_TAG=${1-latest}
-LATEST=$(npm show @kapowaz/lintervention version)
+LATEST=$(npm show lintervention version)
 CURRENT=$(node -e 'console.log(require("./dist/package.json").version)')
 
 if [ "$CURRENT" != "$LATEST" ]
