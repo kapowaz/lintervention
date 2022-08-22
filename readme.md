@@ -53,7 +53,7 @@ To use with a yarn or npm script, create a JavaScript file with the following
 contents, called e.g. `lintervention.js`:
 
 ```js
-const { report } = require('@kapowaz/lintervention');
+const { report } = require('lintervention');
 
 report();
 ```
@@ -74,7 +74,7 @@ Add the following to your `dangerfile.js`:
 
 ```js
 import { markdown } from 'danger';
-import { dangerReport } from '@kapowaz/lintervention';
+import { dangerReport } from 'lintervention';
 
 async function lintervention() {
   const report = await dangerReport();
