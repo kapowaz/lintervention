@@ -20,11 +20,14 @@ export const reportDisabled = async ({
    */
   platform = GrepPlatform.Linux,
   scope = GitScope.Branch,
+  files = '',
 }: {
   platform?: GrepPlatform;
   scope?: GitScope;
+  files?: string;
 }): Promise<IOverruleReport[]> => {
-  const findCommand = gitFilesCommand({ scope });
+  const findCommand =
+    scope === GitScope.All ? files : gitFilesCommand({ scope });
   const { stdout } = await findDisabled({ platform, findCommand });
   const trimmed = stdout.trim();
 
