@@ -17,3 +17,6 @@ yarn build:tsc
 echo "- Copying static files to 'dist/'…"
 cp package.json dist/
 cp readme.md dist/
+
+echo "- Copying bin files to 'dist/'…"
+cp -R src/bin/ dist/bin/
