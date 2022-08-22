@@ -6,6 +6,34 @@ import { GrepPlatform, IFindDisabled, IOutput } from './types';
 
 const exec = util.promisify(execChildProcess);
 
+const DEFAULT_ARGUMENTS = {
+  platform: GrepPlatform.BSD,
+  grepArguments: 'roh',
+  summary: true,
+  findCommand: '',
+};
+
+/**
+ * This function generates a command using grep to run against either all files in
+ * the repository, or a subset (based on git history).
+ */
+
+export const findDisabled = async ({
+  platform,
+  grepArguments,
+  summary,
+  findCommand,
+}: IFindDisabled = DEFAULT_ARGUMENTS): Promise<IOutput> => {
+  const command = grepDisabledCommand({
+    platform,
+    grepArguments,
+    summary,
+    findCommand,
+  });
+
+  return exec(command);
+};
+
 /**
  * `findDisabled` executes a grep command against either all files in
  * the repository, or a subset (based on git history), and returns a promise
@@ -13,7 +41,7 @@ const exec = util.promisify(execChildProcess);
  * executing the command.
  */
 
-export const findDisabled = async ({
+export const grepDisabledCommand = ({
   /**
    * In CI we want to ensure we default to a GNU/Linux-like set of command-line
    * utilities; we can override this by passing the --platform argument in from
@@ -22,15 +50,15 @@ export const findDisabled = async ({
    * line utilities.
    */
   platform,
-  grepArguments = 'roh',
-  summary = true,
+  grepArguments = DEFAULT_ARGUMENTS.grepArguments,
+  summary = DEFAULT_ARGUMENTS.summary,
 
   /**
    * If provided, this command will be prepended to the grep command run, using
    * xargs to pipe the resulting list of files to search across
    */
-  findCommand = '',
-}: IFindDisabled): Promise<IOutput> => {
+  findCommand = DEFAULT_ARGUMENTS.findCommand,
+}: IFindDisabled = DEFAULT_ARGUMENTS): string => {
   /**
    * This variable lets us specify which files to explicitly include and
    * include, if we’re not supplying an explicit *list* of files to check; this
@@ -88,5 +116,5 @@ export const findDisabled = async ({
   const command =
     findCommand !== '' ? `${findCommand} | xargs ${fullCommand}` : fullCommand;
 
-  return exec(command);
+  return command;
 };

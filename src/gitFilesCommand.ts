@@ -8,7 +8,7 @@ import { GitScope } from './types';
  */
 export const gitFilesCommand = ({
   scope = GitScope.Branch,
-  baseBranch = 'master',
+  baseBranch = 'main',
 }: {
   scope?: GitScope;
   baseBranch?: string;
