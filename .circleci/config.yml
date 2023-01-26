@@ -1,20 +1,18 @@
 defaults: &defaults
   docker:
-    - image: rhinogram/node-awscli
+    - image: cimg/node:18.13.0
 
 version: 2.1
-
 orbs:
-  node: circleci/node@4.7.0
+  node: circleci/node@5.1.0
 
 jobs:
   test:
     <<: *defaults
     steps:
       - node/install:
-          node-version: v14.19.3
-          install-npm: false
-          install-yarn: false
+          node-version: v18.13.0
+          install-yarn: true
       - checkout
       - run: yarn
       - run: yarn -s lint
@@ -25,9 +23,8 @@ jobs:
     <<: *defaults
     steps:
       - node/install:
-          node-version: v14.19.3
-          install-npm: false
-          install-yarn: false
+          node-version: v18.13.0
+          install-yarn: true
       - checkout
       - add_ssh_keys:
           fingerprints:
