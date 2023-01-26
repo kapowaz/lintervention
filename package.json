@@ -22,7 +22,6 @@
     "build": "sh ./bin/build-dist.sh",
     "build:tsc": "tsc",
     "build:js": "BABEL_ENV='dist-js-build' babel src --extensions '.ts,.js' --out-dir dist --ignore src/index.js,src/**/*.test.js,src/**/*.test.ts,src/test/** --quiet",
-    "ci:publish": "sh ./bin/publish.sh",
     "prepare": "husky install",
     "semantic-release": "semantic-release"
   },
