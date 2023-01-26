@@ -22,7 +22,9 @@
     "build": "sh ./bin/build-dist.sh",
     "build:tsc": "tsc",
     "build:js": "BABEL_ENV='dist-js-build' babel src --extensions '.ts,.js' --out-dir dist --ignore src/index.js,src/**/*.test.js,src/**/*.test.ts,src/test/** --quiet",
-    "ci:publish": "sh ./bin/publish.sh"
+    "ci:publish": "sh ./bin/publish.sh",
+    "prepare": "husky install",
+    "semantic-release": "semantic-release"
   },
   "bin": "./bin/lintervention",
   "dependencies": {
@@ -33,6 +35,10 @@
     "@babel/core": "^7.15.8",
     "@babel/preset-env": "^7.15.8",
     "@babel/preset-typescript": "^7.15.0",
+    "@commitlint/cli": "^17.4.2",
+    "@commitlint/config-conventional": "^17.4.2",
+    "@semantic-release/changelog": "^6.0.2",
+    "@semantic-release/git": "^10.0.1",
     "@types/jest": "^28.1.7",
     "@types/minimist": "^1.2.2",
     "@typescript-eslint/eslint-plugin": "^4.19.0",
@@ -45,11 +51,13 @@
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-simple-import-sort": "^5.0.3",
     "eslint-plugin-sort-exports": "^0.7.0",
+    "husky": "^8.0.3",
     "jest": "27",
     "jest-cli": "27",
     "jest-matcher-one-of": "^1.0.2",
     "jest-watch-typeahead": "^0.5.0",
     "prettier": "2.2.1",
+    "semantic-release": "^20.1.0",
     "ts-jest": "^27.0.5",
     "typescript": "^4.3.2"
   }
