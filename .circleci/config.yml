@@ -35,7 +35,7 @@ jobs:
           command: yarn build
       - run:
           name: Publish to NPM with semantic-release
-          command: cd dist && yarn semantic-release || true
+          command: cd dist && ../node_modules/.bin/semantic-release || true
 
 workflows:
   version: 2
