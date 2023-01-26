@@ -19,12 +19,12 @@ describe('reportDisabled', () => {
       files: 'ls -1d src/test/sample/*',
     });
     expect(result).toEqual([
+      { count: '1', rule: '@typescript-eslint/no-unused-vars' },
+      { count: '1', rule: '@typescript-eslint/no-non-null-assertion' },
       { count: '1', rule: 'no-undef' },
       { count: '1', rule: 'no-param-reassign' },
       { count: '1', rule: 'no-console' },
       { count: '1', rule: 'import/no-extraneous-dependencies' },
-      { count: '1', rule: '@typescript-eslint/no-unused-vars' },
-      { count: '1', rule: '@typescript-eslint/no-non-null-assertion' },
     ]);
   });
 
@@ -32,12 +32,12 @@ describe('reportDisabled', () => {
     const result = await reportDisabled({ platform, scope: GitScope.All });
     expect(result).toEqual([
       { count: '3', rule: 'no-console' },
-      { count: '1', rule: 'no-undef' },
-      { count: '1', rule: 'no-param-reassign' },
-      { count: '1', rule: 'import/no-extraneous-dependencies' },
       { count: '1', rule: '@typescript-eslint/no-var-requires' },
       { count: '1', rule: '@typescript-eslint/no-unused-vars' },
       { count: '1', rule: '@typescript-eslint/no-non-null-assertion' },
+      { count: '1', rule: 'no-undef' },
+      { count: '1', rule: 'no-param-reassign' },
+      { count: '1', rule: 'import/no-extraneous-dependencies' },
     ]);
   });
 });

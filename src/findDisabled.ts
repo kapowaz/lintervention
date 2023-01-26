@@ -103,7 +103,7 @@ export const grepDisabledCommand = ({
    */
   const grepCommand = `grep ${platformGrepArguments} ${includeExclude} "${directivesPattern}"`;
   const sedCommand = `sed -E 's/eslint-disable|eslint-disable-line|eslint-disable-next-line//g'`;
-  const countUniques = `tr ',' '\\n' | tr -d ' ' | sort | uniq -c | sort -nr`;
+  const countUniques = `tr ',' '\\n' | tr -d ' ' | sort -d | uniq -c | sort -dr`;
   const fullCommand = summary
     ? `${grepCommand} | ${sedCommand} | ${countUniques}`
     : grepCommand;
