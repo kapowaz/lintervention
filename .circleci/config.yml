@@ -34,8 +34,8 @@ jobs:
           name: Build dist files
           command: yarn build
       - run:
-          name: Publish to NPM
-          command: sh ./bin/publish.sh
+          name: Publish to NPM with semantic-release
+          command: cd dist && yarn semantic-release || true
 
 workflows:
   version: 2
