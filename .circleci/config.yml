@@ -1,6 +1,6 @@
 defaults: &defaults
   docker:
-    - image: cimg/node:18.13.0
+    - image: cimg/node:16.19.0
 
 version: 2.1
 orbs:
@@ -11,7 +11,7 @@ jobs:
     <<: *defaults
     steps:
       - node/install:
-          node-version: v18.13.0
+          node-version: v16.19.0
           install-yarn: true
       - checkout
       - run: yarn
@@ -23,7 +23,7 @@ jobs:
     <<: *defaults
     steps:
       - node/install:
-          node-version: v18.13.0
+          node-version: v16.19.0
           install-yarn: true
       - checkout
       - add_ssh_keys:
@@ -35,7 +35,7 @@ jobs:
           command: yarn build
       - run:
           name: Publish to NPM with semantic-release
-          command: cd dist && ../node_modules/.bin/semantic-release || true
+          command: CI=true nvm install 'lts/*' && npx semantic-release --debug
 
 workflows:
   version: 2
@@ -49,3 +49,4 @@ workflows:
             branches:
               only:
                 - main
+                - beta
