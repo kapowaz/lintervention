@@ -1,12 +1,12 @@
 import { GitScope } from './types';
 
 /**
- * `gitFilesCommand` returns a git command which when executed will return a list
+ * `gitCommand` returns a git command which when executed will return a list
  * of changed files, either in the current branch, or in the currently staged
  * (uncommitted) changes. If scope is anything other than branch or staged, it
  * returns an empty string.
  */
-export const gitFilesCommand = ({
+export const gitCommand = ({
   scope = GitScope.Branch,
   baseBranch = 'main',
 }: {
