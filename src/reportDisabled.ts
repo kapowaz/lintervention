@@ -1,5 +1,6 @@
 import { findDisabled } from './findDisabled';
 import { gitFilesCommand } from './gitFilesCommand';
+import { sortResults } from './sortResults';
 import { GitScope, GrepPlatform, IOverruleReport } from './types';
 
 /**
@@ -35,9 +36,11 @@ export const reportDisabled = async ({
 
   if (trimmed === '') return [];
 
-  return trimmed.split('\n').map((line) => {
+  const results = trimmed.split('\n').map((line) => {
     const [count, rule] = line.trim().split(' ');
 
     return { count, rule };
   });
+
+  return sortResults(results);
 };
