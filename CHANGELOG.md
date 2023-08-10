@@ -1,3 +1,10 @@
+## [3.0.2](https://github.com/kapowaz/lintervention/compare/v3.0.1...v3.0.2) (2023-08-10)
+
+
+### Bug Fixes
+
+* explicitly sort results when received ([acb70cc](https://github.com/kapowaz/lintervention/commit/acb70cc4aafb59a6ebaaedf14fc77975bbe37e33))
+
 ## [3.0.1](https://github.com/kapowaz/lintervention/compare/v3.0.0...v3.0.1) (2023-08-10)
 
 
