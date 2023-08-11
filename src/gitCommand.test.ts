@@ -2,6 +2,14 @@ import { GitScope } from './types';
 import { gitCommand } from '.';
 
 describe('gitCommand', () => {
+  it('should just return the xargs argument if this is provided', () => {
+    const result = gitCommand({
+      scope: GitScope.Branch,
+      xargs: 'ls -1d src/test/sample/*',
+    });
+    expect(result).toBe(`ls -1d src/test/sample/*`);
+  });
+
   it('should return the correct command if scope is branch', () => {
     const result = gitCommand({ scope: GitScope.Branch });
     expect(result).toBe(

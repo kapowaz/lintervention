@@ -1,5 +1,4 @@
 import { findDisabled } from './findDisabled';
-import { gitCommand } from './gitCommand';
 import { sortResults } from './sortResults';
 import { GitScope, GrepPlatform, IOverruleReport } from './types';
 
@@ -29,9 +28,14 @@ export const reportDisabled = async ({
   files?: string;
   baseBranch?: string;
 }): Promise<IOverruleReport[]> => {
-  const findCommand =
-    scope === GitScope.All ? files : gitCommand({ scope, baseBranch });
-  const { stdout } = await findDisabled({ platform, findCommand });
+  const xargs = scope === GitScope.All ? files : '';
+
+  const { stdout } = await findDisabled({
+    platform,
+    scope,
+    baseBranch,
+    xargs,
+  });
   const trimmed = stdout.trim();
 
   if (trimmed === '') return [];

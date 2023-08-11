@@ -2,7 +2,7 @@
 
 import minimist from 'minimist';
 
-import { findDisabled, gitCommand, IOutput } from '../';
+import { findDisabled, IOutput } from '../';
 
 export const report = async () => {
   const argv = minimist(process.argv.slice(2));
@@ -12,9 +12,7 @@ export const report = async () => {
     ? argv['with-base-branch']
     : undefined;
 
-  const findCommand = gitCommand({ scope, baseBranch });
-
-  findDisabled({ platform, findCommand }).then(({ stdout }: IOutput) => {
+  findDisabled({ platform, scope, baseBranch }).then(({ stdout }: IOutput) => {
     console.log(stdout);
   });
 };

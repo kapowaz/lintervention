@@ -1,10 +1,10 @@
-import { GrepPlatform, IFindDisabled } from './types';
+import { GrepPlatform, IGrepCommand } from './types';
 
 const DEFAULT_ARGUMENTS = {
   platform: GrepPlatform.BSD,
   grepArguments: 'roh',
   summary: true,
-  findCommand: '',
+  xargs: '',
 };
 
 /**
@@ -30,8 +30,8 @@ export const grepCommand = ({
    * If provided, this command will be prepended to the grep command run, using
    * xargs to pipe the resulting list of files to search across
    */
-  findCommand = DEFAULT_ARGUMENTS.findCommand,
-}: IFindDisabled = DEFAULT_ARGUMENTS): string => {
+  xargs = DEFAULT_ARGUMENTS.xargs,
+}: IGrepCommand = DEFAULT_ARGUMENTS): string => {
   /**
    * This variable lets us specify which files to explicitly include and
    * include, if we’re not supplying an explicit *list* of files to check; this
@@ -87,7 +87,7 @@ export const grepCommand = ({
    * the grep command using xargs.
    */
   const command =
-    findCommand !== '' ? `${findCommand} | xargs ${fullCommand}` : fullCommand;
+    xargs !== '' ? `${xargs} | xargs ${fullCommand}` : fullCommand;
 
   return command;
 };

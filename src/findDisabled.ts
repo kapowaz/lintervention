@@ -2,8 +2,9 @@
 import { exec as execChildProcess } from 'child_process';
 import util from 'util';
 
+import { gitCommand } from './gitCommand';
 import { grepCommand } from './grepCommand';
-import { GrepPlatform, IFindDisabled, IOutput } from './types';
+import { GitScope, GrepPlatform, IFindDisabled, IOutput } from './types';
 
 const exec = util.promisify(execChildProcess);
 
@@ -23,13 +24,15 @@ export const findDisabled = async ({
   platform,
   grepArguments,
   summary,
-  findCommand,
+  xargs,
+  scope = GitScope.All,
+  baseBranch,
 }: IFindDisabled = DEFAULT_ARGUMENTS): Promise<IOutput> => {
   const command = grepCommand({
     platform,
     grepArguments,
     summary,
-    findCommand,
+    xargs: gitCommand({ xargs, scope, baseBranch }),
   });
 
   return exec(command);
