@@ -1,3 +1,10 @@
+# [3.1.0](https://github.com/kapowaz/lintervention/compare/v3.0.3...v3.1.0) (2023-08-14)
+
+
+### Features
+
+* move command line arguments into lintervention bin ([ec3bc86](https://github.com/kapowaz/lintervention/commit/ec3bc86a30014c3f15005a0dcafa0495bdcbacf5))
+
 ## [3.0.3](https://github.com/kapowaz/lintervention/compare/v3.0.2...v3.0.3) (2023-08-14)
 
 
