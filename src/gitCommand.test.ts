@@ -1,16 +1,24 @@
 import { GitScope } from './types';
-import { gitFilesCommand } from '.';
+import { gitCommand } from '.';
 
-describe('gitFilesCommand', () => {
+describe('gitCommand', () => {
+  it('should just return the xargs argument if this is provided', () => {
+    const result = gitCommand({
+      scope: GitScope.Branch,
+      xargs: 'ls -1d src/test/sample/*',
+    });
+    expect(result).toBe(`ls -1d src/test/sample/*`);
+  });
+
   it('should return the correct command if scope is branch', () => {
-    const result = gitFilesCommand({ scope: GitScope.Branch });
+    const result = gitCommand({ scope: GitScope.Branch });
     expect(result).toBe(
       `git diff --name-only main...$(git branch | grep '*' | awk '{print $2}')`
     );
   });
 
   it('should return the correct command if a base branch name is supplied', () => {
-    const result = gitFilesCommand({
+    const result = gitCommand({
       scope: GitScope.Branch,
       baseBranch: 'develop',
     });
@@ -20,12 +28,12 @@ describe('gitFilesCommand', () => {
   });
 
   it('should return the correct command if scope is staged', () => {
-    const result = gitFilesCommand({ scope: GitScope.Staged });
+    const result = gitCommand({ scope: GitScope.Staged });
     expect(result).toBe('git diff --name-only --cached');
   });
 
   it('should return nothing if scope is all', () => {
-    const result = gitFilesCommand({ scope: GitScope.All });
+    const result = gitCommand({ scope: GitScope.All });
     expect(result).toBe('');
   });
 });

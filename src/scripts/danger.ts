@@ -15,7 +15,11 @@ const table = ({
 ${rows.map((row) => `|${row.join('|')}|`).join('\n')}
 `;
 
-export const dangerReport = async ({ baseBranch }: { baseBranch?: string }) => {
+export const dangerReport = async ({
+  baseBranch = 'main',
+}: {
+  baseBranch?: string;
+}) => {
   const directives = await reportDisabled({ baseBranch });
   const heading = 'Lintervention Report';
   const headings = ['Count', 'Rule'];
