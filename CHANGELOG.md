@@ -1,3 +1,10 @@
+## [3.0.3-beta.1](https://github.com/kapowaz/lintervention/compare/v3.0.2...v3.0.3-beta.1) (2023-08-14)
+
+
+### Bug Fixes
+
+* add missing default baseBranch to dangerReport ([dd16d4c](https://github.com/kapowaz/lintervention/commit/dd16d4c41d972352ffb7100976520da1f9fb1993))
+
 ## [3.0.2](https://github.com/kapowaz/lintervention/compare/v3.0.1...v3.0.2) (2023-08-10)
 
 
