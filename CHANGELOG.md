@@ -1,3 +1,11 @@
+# [3.3.0](https://github.com/kapowaz/lintervention/compare/v3.2.2...v3.3.0) (2023-08-15)
+
+
+### Features
+
+* add ability to specify an explicit branch to diff ([42a8b96](https://github.com/kapowaz/lintervention/commit/42a8b96508b54c53c3ed585a7ce45cd294b77d14))
+* add currentBranch argument to gitCommand ([1717aea](https://github.com/kapowaz/lintervention/commit/1717aea9db5cc0704eaae6ea059a07fc37ee6813))
+
 ## [3.2.2](https://github.com/kapowaz/lintervention/compare/v3.2.1...v3.2.2) (2023-08-15)
 
 
