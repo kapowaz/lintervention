@@ -1,3 +1,10 @@
+# [3.2.0](https://github.com/kapowaz/lintervention/compare/v3.1.0...v3.2.0) (2023-08-15)
+
+
+### Features
+
+* add new dangerResults function ([71a1817](https://github.com/kapowaz/lintervention/commit/71a18178ce3f6d7c4a0514840b72a3b624a21cd2))
+
 # [3.1.0](https://github.com/kapowaz/lintervention/compare/v3.0.3...v3.1.0) (2023-08-14)
 
 
