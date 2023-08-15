@@ -1,3 +1,10 @@
+## [3.2.2](https://github.com/kapowaz/lintervention/compare/v3.2.1...v3.2.2) (2023-08-15)
+
+
+### Bug Fixes
+
+* omit deleted files from gitCommand results ([622cfa5](https://github.com/kapowaz/lintervention/commit/622cfa51b0bf7809536dbdb4f6c315737dc02372))
+
 ## [3.2.1](https://github.com/kapowaz/lintervention/compare/v3.2.0...v3.2.1) (2023-08-15)
 
 
