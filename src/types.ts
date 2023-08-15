@@ -30,6 +30,7 @@ export interface IGitCommand {
   xargs?: string;
   scope?: GitScope;
   baseBranch?: string;
+  currentBranch?: string;
 }
 
 export interface IGrepCommand {
