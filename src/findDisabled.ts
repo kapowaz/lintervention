@@ -27,12 +27,13 @@ export const findDisabled = async ({
   xargs,
   scope = GitScope.All,
   baseBranch,
+  currentBranch,
 }: IFindDisabled = DEFAULT_ARGUMENTS): Promise<IOutput> => {
   const command = grepCommand({
     platform,
     grepArguments,
     summary,
-    xargs: gitCommand({ xargs, scope, baseBranch }),
+    xargs: gitCommand({ xargs, scope, baseBranch, currentBranch }),
   });
 
   return exec(command);

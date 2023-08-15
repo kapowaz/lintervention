@@ -22,19 +22,22 @@ export const reportDisabled = async ({
   scope = GitScope.Branch,
   files = '',
   baseBranch,
+  currentBranch,
 }: {
   platform?: GrepPlatform;
   scope?: GitScope;
   files?: string;
   baseBranch?: string;
+  currentBranch?: string;
 }): Promise<IOverruleReport[]> => {
   const xargs = scope === GitScope.All ? files : '';
 
   const { stdout } = await findDisabled({
     platform,
     scope,
-    baseBranch,
     xargs,
+    baseBranch,
+    currentBranch,
   });
   const trimmed = stdout.trim();
 

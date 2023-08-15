@@ -9,7 +9,13 @@ export enum GrepPlatform {
   Linux = 'linux',
 }
 
-export interface IFindDisabled extends IGrepCommand {
+export interface IFindDisabled
+  extends IGrepCommand,
+    Omit<IGitCommand, 'xargs'> {}
+
+export interface IGitCommand {
+  xargs?: string;
+
   /**
    * Indicates the scope of the git command when performing the search against a
    * git diff; can be one of Staged (only files currently staged but not
@@ -24,12 +30,12 @@ export interface IFindDisabled extends IGrepCommand {
    * configuration value of 'main', e.g. if the base branch is called 'master'
    */
   baseBranch?: string;
-}
 
-export interface IGitCommand {
-  xargs?: string;
-  scope?: GitScope;
-  baseBranch?: string;
+  /**
+   * Optional explicit branch name, if you need to override what might be
+   * determined locally by your CI pipeline, if for example it’s doing something
+   * weird to your locally cloned git repository.
+   */
   currentBranch?: string;
 }
 

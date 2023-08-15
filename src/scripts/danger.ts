@@ -23,14 +23,21 @@ ${rows.map((row) => `|${row.join('|')}|`).join('\n')}
  */
 export const dangerReport = async ({
   platform = GrepPlatform.Linux,
-  baseBranch = 'main',
   scope = GitScope.Branch,
+  baseBranch = 'main',
+  currentBranch,
 }: {
   platform?: GrepPlatform;
   scope?: GitScope;
   baseBranch?: string;
+  currentBranch?: string;
 }) => {
-  const directives = await reportDisabled({ platform, baseBranch, scope });
+  const directives = await reportDisabled({
+    platform,
+    scope,
+    baseBranch,
+    currentBranch,
+  });
   const heading = 'Lintervention Report';
   const headings = ['Count', 'Rule'];
 
@@ -53,12 +60,14 @@ export const dangerReport = async ({
  */
 export const dangerResults = async ({
   platform = GrepPlatform.Linux,
-  baseBranch = 'main',
   scope = GitScope.Branch,
+  baseBranch = 'main',
+  currentBranch,
 }: {
   platform?: GrepPlatform;
   scope?: GitScope;
   baseBranch?: string;
+  currentBranch?: string;
 }): Promise<IOverruleReport[]> => {
-  return await reportDisabled({ platform, baseBranch, scope });
+  return await reportDisabled({ platform, scope, baseBranch, currentBranch });
 };
