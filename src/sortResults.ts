@@ -8,10 +8,13 @@ import { IOverruleReport } from './types';
  */
 export const sortResults = (results: IOverruleReport[]): IOverruleReport[] => {
   return results.sort((a: IOverruleReport, b: IOverruleReport) => {
+    const aCount = parseInt(a.count, 10);
+    const bCount = parseInt(b.count, 10);
+
     switch (true) {
-      case a.count > b.count:
+      case aCount > bCount:
         return -1;
-      case a.count < b.count:
+      case aCount < bCount:
         return 1;
       default:
         return a.rule.localeCompare(b.rule);
