@@ -1,3 +1,10 @@
+## [3.2.1](https://github.com/kapowaz/lintervention/compare/v3.2.0...v3.2.1) (2023-08-15)
+
+
+### Bug Fixes
+
+* bug with sortResults returning incorrect order ([1cd4761](https://github.com/kapowaz/lintervention/commit/1cd47611ca1fd693d93dcfba24672131369fef58))
+
 # [3.2.0](https://github.com/kapowaz/lintervention/compare/v3.1.0...v3.2.0) (2023-08-15)
 
 
