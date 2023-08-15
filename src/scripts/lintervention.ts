@@ -6,12 +6,16 @@ export const report = async ({
   scope = GitScope.All,
   platform = GrepPlatform.BSD,
   baseBranch,
+  currentBranch,
 }: {
   scope?: GitScope;
   platform?: GrepPlatform;
   baseBranch: string;
+  currentBranch?: string;
 }) => {
-  findDisabled({ scope, platform, baseBranch }).then(({ stdout }: IOutput) => {
-    console.log(stdout);
-  });
+  findDisabled({ scope, platform, baseBranch, currentBranch }).then(
+    ({ stdout }: IOutput) => {
+      console.log(stdout);
+    }
+  );
 };

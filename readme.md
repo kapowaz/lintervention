@@ -77,6 +77,25 @@ async function lintervention() {
 lintervention();
 ```
 
+If for any reason your CI platform is a bit unusual and you want to scope the
+report to changes within a branch, you can explicitly pass in the current branch
+name as follows:
+
+```js
+import { markdown } from 'danger';
+import { dangerReport } from 'lintervention';
+
+// let’s say you get your branch name this way
+const currentBranch = process.env.CURRENT_BRANCH;
+
+async function lintervention() {
+  const report = await dangerReport({ scope: 'branch', baseBranch: 'master', currentBranch });
+  markdown(report);
+}
+
+lintervention();
+```
+
 ### Set GREP_PLATFORM environment variable
 
 By default, `lintervention` assumes you are running on a BSD-like platform (like

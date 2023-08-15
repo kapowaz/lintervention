@@ -13,8 +13,10 @@ export const gitCommand = ({
   xargs = undefined,
   scope = GitScope.Branch,
   baseBranch = 'main',
+  currentBranch = undefined,
 }: IGitCommand) => {
-  const getCurrentBranch = "$(git branch | grep '*' | awk '{print $2}')";
+  const getCurrentBranch =
+    currentBranch || "$(git branch | grep '*' | awk '{print $2}')";
   const filterDeleted = "grep '^[^D]' | awk '{print $2}'";
 
   switch (true) {

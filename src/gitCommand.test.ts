@@ -27,6 +27,17 @@ describe('gitCommand', () => {
     );
   });
 
+  it('should return the correct command if an explicit current branch name is supplied', () => {
+    const result = gitCommand({
+      scope: GitScope.Branch,
+      baseBranch: 'develop',
+      currentBranch: 'dummy-branch',
+    });
+    expect(result).toBe(
+      `git diff --name-status develop...dummy-branch | grep '^[^D]' | awk '{print $2}'`
+    );
+  });
+
   it('should return the correct command if scope is staged', () => {
     const result = gitCommand({ scope: GitScope.Staged });
     expect(result).toBe(
