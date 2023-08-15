@@ -15,14 +15,15 @@ export const gitCommand = ({
   baseBranch = 'main',
 }: IGitCommand) => {
   const getCurrentBranch = "$(git branch | grep '*' | awk '{print $2}')";
+  const filterDeleted = "grep '^[^D]' | awk '{print $2}'";
 
   switch (true) {
     case Boolean(xargs):
       return xargs;
     case scope === GitScope.Staged:
-      return 'git diff --name-only --cached';
+      return `git diff --name-status --cached | ${filterDeleted}`;
     case scope === GitScope.Branch:
-      return `git diff --name-only ${baseBranch}...${getCurrentBranch}`;
+      return `git diff --name-status ${baseBranch}...${getCurrentBranch} | ${filterDeleted}`;
     default:
       // return nothing if scope isn’t one of the options above
       return '';

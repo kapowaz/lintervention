@@ -13,7 +13,7 @@ describe('gitCommand', () => {
   it('should return the correct command if scope is branch', () => {
     const result = gitCommand({ scope: GitScope.Branch });
     expect(result).toBe(
-      `git diff --name-only main...$(git branch | grep '*' | awk '{print $2}')`
+      `git diff --name-status main...$(git branch | grep '*' | awk '{print $2}') | grep '^[^D]' | awk '{print $2}'`
     );
   });
 
@@ -23,13 +23,15 @@ describe('gitCommand', () => {
       baseBranch: 'develop',
     });
     expect(result).toBe(
-      `git diff --name-only develop...$(git branch | grep '*' | awk '{print $2}')`
+      `git diff --name-status develop...$(git branch | grep '*' | awk '{print $2}') | grep '^[^D]' | awk '{print $2}'`
     );
   });
 
   it('should return the correct command if scope is staged', () => {
     const result = gitCommand({ scope: GitScope.Staged });
-    expect(result).toBe('git diff --name-only --cached');
+    expect(result).toBe(
+      `git diff --name-status --cached | grep '^[^D]' | awk '{print $2}'`
+    );
   });
 
   it('should return nothing if scope is all', () => {
