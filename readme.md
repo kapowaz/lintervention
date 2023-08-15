@@ -96,27 +96,4 @@ async function lintervention() {
 lintervention();
 ```
 
-### Set GREP_PLATFORM environment variable
-
-By default, `lintervention` assumes you are running on a BSD-like platform (like
-MacOS). However, since the `grep` tool has subtle differences in its arguments
-and output between BSD-like platforms and Linux platforms, it will check for the
-`GREP_PLATFORM` environment variable. If you run `lintervention` in Continuous
-Integration on a Linux platform (e.g. Circle CI), you will need to ensure this
-to `linux`, either through the environment variables section of your CI
-platform, or by prefixing the command in your CI configuration:
-
-```
-# example config file for something like jenkins
-jobs:
-  test:
-    steps:
-      - checkout
-      - run: yarn
-      - run:
-          name: Danger
-          command: GREP_PLATFORM=linux yarn danger ci
-
-```
-
 [1]: https://github.com/okonet/lint-staged
