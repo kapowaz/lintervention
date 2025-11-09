@@ -1,4 +1,3 @@
-/* eslint-disable no-console, @typescript-eslint/no-var-requires */
 import { exec as execChildProcess } from 'child_process';
 import util from 'util';
 
