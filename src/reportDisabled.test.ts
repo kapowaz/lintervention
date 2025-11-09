@@ -33,11 +33,10 @@ describe('reportDisabled', () => {
     const result = await reportDisabled({ platform, scope: GitScope.All });
 
     expect(result).toEqual([
-      { count: '7', rule: 'no-console' },
+      { count: '5', rule: 'no-console' },
       { count: '3', rule: 'import/no-extraneous-dependencies' },
       { count: '1', rule: '@typescript-eslint/no-non-null-assertion' },
       { count: '1', rule: '@typescript-eslint/no-unused-vars' },
-      { count: '1', rule: '@typescript-eslint/no-var-requires' },
       { count: '1', rule: 'no-param-reassign' },
       { count: '1', rule: 'no-undef' },
     ]);

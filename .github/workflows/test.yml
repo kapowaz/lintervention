@@ -1,0 +1,31 @@
+name: Test pull request
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+jobs:
+  test:
+    permissions:
+      contents: read
+    name: Run tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Test using Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Lint library
+        run: yarn lint
+
+      - name: Test library
+        run: GREP_PLATFORM=linux yarn test
+
+      - name: Typecheck library
+        run: yarn typecheck

@@ -1,7 +1,6 @@
 #!/usr/bin/env node
-/* eslint-disable @typescript-eslint/no-var-requires */
-const minimist = require('minimist');
-const { report } = require('../scripts/lintervention');
+import minimist from 'minimist';
+import { report } from '../esm/scripts/lintervention.js';
 
 const argv = minimist(process.argv.slice(2));
 const scope = argv.scope || 'all';

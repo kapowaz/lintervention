@@ -1,14 +1,3 @@
-export enum GitScope {
-  All = 'all',
-  Branch = 'branch',
-  Staged = 'staged',
-}
-
-export enum GrepPlatform {
-  BSD = 'bsd',
-  Linux = 'linux',
-}
-
 export interface IFindDisabled
   extends IGrepCommand,
     Omit<IGitCommand, 'xargs'> {}
@@ -75,4 +64,15 @@ export interface IOutput {
 export interface IOverruleReport {
   count: string;
   rule: string;
+}
+
+export enum GitScope {
+  All = 'all',
+  Branch = 'branch',
+  Staged = 'staged',
+}
+
+export enum GrepPlatform {
+  BSD = 'bsd',
+  Linux = 'linux',
 }

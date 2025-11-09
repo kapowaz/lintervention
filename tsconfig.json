@@ -20,6 +20,6 @@
     "outDir": "./dist",
     "types": ["jest", "node"]
   },
-  "exclude": ["node_modules", "dist"],
-  "include": ["**/*.ts"]
+  "exclude": ["node_modules", "compiled", "dist"],
+  "include": ["src/**/*.ts"]
 }

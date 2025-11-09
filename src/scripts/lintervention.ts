@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-
 import { findDisabled, GitScope, GrepPlatform, IOutput } from '../';
 
 export const report = async ({
@@ -16,6 +14,6 @@ export const report = async ({
   findDisabled({ scope, platform, baseBranch, currentBranch }).then(
     ({ stdout }: IOutput) => {
       console.log(stdout);
-    }
+    },
   );
 };
