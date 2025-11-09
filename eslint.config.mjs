@@ -1,8 +1,6 @@
-import eslint from 'eslint';
+import { defineConfig, globalIgnores } from 'eslint/config';
 
 import config from '@kapowaz/eslint-config';
-
-const { defineConfig, globalIgnores } = eslint;
 
 export default defineConfig(config, [
   globalIgnores(
