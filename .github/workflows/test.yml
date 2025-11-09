@@ -25,7 +25,7 @@ jobs:
         run: yarn lint
 
       - name: Test library
-        run: yarn test
+        run: GREP_PLATFORM=linux yarn test
 
       - name: Typecheck library
         run: yarn typecheck
