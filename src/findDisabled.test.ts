@@ -43,8 +43,12 @@ ${indent}1 no-param-reassign
       currentBranch: 'origin/dummy-branch',
     });
 
-    expect(stdout).toBe(`${indent}2 no-console
-${indent}1 import/no-extraneous-dependencies
+    expect(stdout).toBe(`${indent}5 no-console
+${indent}3 import/no-extraneous-dependencies
+${indent}1 @typescript-eslint/no-unused-vars
+${indent}1 @typescript-eslint/no-non-null-assertion
+${indent}1 no-undef
+${indent}1 no-param-reassign
 `);
   });
 });
