@@ -1,3 +1,8 @@
+# [4.0.0](https://github.com/kapowaz/lintervention/compare/v3.3.0...v3.3.0) (2025-11-09)
+
+* Update all dependencies to latest, and migrated build process to rollup and GH actions
+
+
 # [3.3.0](https://github.com/kapowaz/lintervention/compare/v3.2.2...v3.3.0) (2023-08-15)
 
 

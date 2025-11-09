@@ -1,6 +1,6 @@
 {
   "name": "lintervention",
-  "version": "2.0.0",
+  "version": "4.0.0",
   "license": "MIT",
   "description": "A tool for identifying ESLint rules you routinely ignore",
   "repository": "github:kapowaz/lintervention",
