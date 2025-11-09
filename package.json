@@ -9,8 +9,23 @@
     "npm": "please-use-yarn",
     "yarn": ">= 1.22.0"
   },
-  "main": "index.js",
-  "types": "index.d.ts",
+  "type": "module",
+  "main": "dist/cjs/index.cjs",
+  "module": "dist/esm/index.js",
+  "types": "dist/cjs/index.d.cts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/index.d.cts",
+        "default": "./dist/cjs/index.cjs"
+      }
+    }
+  },
   "scripts": {
     "test": "NODE_ENV=test jest",
     "test:watch": "NODE_ENV=test jest --watch",
@@ -19,10 +34,10 @@
     "lintervention:staged": "yarn lintervention --scope staged",
     "lintervention:branch": "yarn lintervention --scope branch",
     "typecheck": "tsc --emitDeclarationOnly false --noEmit",
-    "build": "sh ./bin/build-dist.sh",
-    "build:tsc": "tsc",
-    "build:js": "BABEL_ENV='dist-js-build' babel src --extensions '.ts,.js' --out-dir dist --ignore src/index.js,src/**/*.test.js,src/**/*.test.ts,src/test/** --quiet"
+    "clean": "rm -rf ./dist ./compiled",
+    "build": "yarn clean && yarn build:ts && yarn build:js",
     "build:ts": "tsc -p ./tsconfig.build.json",
+    "build:js": "rollup -c rollup.config.ts --configPlugin esbuild"
   },
   "bin": "./bin/lintervention",
   "dependencies": {
@@ -34,17 +49,24 @@
     "@babel/core": "^7.28.5",
     "@babel/preset-env": "^7.28.5",
     "@babel/preset-typescript": "^7.28.5",
+    "@rollup/plugin-commonjs": "^28.0.3",
+    "@rollup/plugin-node-resolve": "^16.0.1",
     "@types/jest": "^30.0.0",
     "@types/minimist": "^1.2.2",
     "@typescript-eslint/eslint-plugin": "^8.46.3",
     "@typescript-eslint/parser": "^8.46.3",
     "babel-jest": "^30.2.0",
+    "esbuild": "^0.25.4",
     "eslint": "^9.39.1",
     "jest": "30",
     "jest-cli": "30",
     "jest-matcher-one-of": "^1.0.2",
     "jest-watch-typeahead": "^3.0.1",
     "prettier": "3.6.2",
+    "rollup": "^4.41.0",
+    "rollup-plugin-dts": "^6.2.1",
+    "rollup-plugin-esbuild": "^6.2.1",
+    "rollup-plugin-node-externals": "^8.0.0",
     "ts-jest": "^29.4.5",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.46.3"
